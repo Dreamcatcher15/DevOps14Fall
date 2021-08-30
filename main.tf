@@ -52,6 +52,10 @@ resource "aws_eip_association" "my_eip_to_ec2" {
  allocation_id = aws_eip.devops14_2021.id
  
 }
+resource "aws_network_interface_sg_attachment" "sg_attachment" {
+  security_group_id    = aws_security_group.devops14_2021.id
+  network_interface_id = aws_instance.devops14_2021.primary_network_interface_id
+}
 
 output "eip" {
   value = aws_eip.devops14_2021.public_ip
